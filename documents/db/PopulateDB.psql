@@ -17,3 +17,15 @@ INSERT INTO student (discord_id, first_name, last_name) VALUES (3320838339124264
 ---------------------------------------------
 INSERT INTO course (short_name, full_name, opt_self_enroll) VALUES ('D101', 'Introduction to Discord', false);
 INSERT INTO course (short_name, full_name, opt_self_enroll) VALUES ('CS420', 'Getting Through Coursework', true);
+
+---------------------------------------------
+-- Add Teachers to Courses
+---------------------------------------------
+-- Add Joshua to D101
+INSERT INTO teachers_of_course (teacher_id, course_id)
+VALUES ((SELECT teacher_id FROM teacher WHERE discord_id = 215896259356000266),
+        (SELECT course_id FROM course WHERE short_name = 'D101'));
+-- Add Oliver to CS420
+INSERT INTO teachers_of_course (teacher_id, course_id)
+VALUES ((SELECT teacher_id FROM teacher WHERE discord_id = 187979032904728576),
+        (SELECT course_id FROM course WHERE short_name = 'CS420'));
