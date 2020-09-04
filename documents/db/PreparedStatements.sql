@@ -10,3 +10,6 @@ INSERT INTO course (short_name, full_name) values (?, ?);
 
 -- REGISTER STUDENT / FORCE REGISTER
 INSERT INTO student (discord_id, first_name, last_name) VALUES (?, ?, ?);
+
+-- START SESSION
+INSERT INTO session (date_started, date_ended, txt_channel_id, voice_channel_id, register_id, max_attendance) VALUES (?, ?, ?, ?, ?, ?);
