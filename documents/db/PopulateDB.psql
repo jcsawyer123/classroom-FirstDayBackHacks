@@ -11,3 +11,9 @@ INSERT INTO student (discord_id, first_name, last_name) VALUES (1285571299121561
 INSERT INTO student (discord_id, first_name, last_name) VALUES (184941413245517824, 'Cameron', 'Jones');
 INSERT INTO student (discord_id, first_name, last_name) VALUES (514363906940993561, 'Megi', 'Braholli');
 INSERT INTO student (discord_id, first_name, last_name) VALUES (332083833912426497, 'Isaac', 'Scarisbrick');
+
+---------------------------------------------
+-- Create Course
+---------------------------------------------
+INSERT INTO course (short_name, full_name, opt_self_enroll) VALUES ('D101', 'Introduction to Discord', false);
+INSERT INTO course (short_name, full_name, opt_self_enroll) VALUES ('CS420', 'Getting Through Coursework', true);
