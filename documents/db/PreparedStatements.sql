@@ -13,3 +13,10 @@ INSERT INTO student (discord_id, first_name, last_name) VALUES (?, ?, ?);
 
 -- START SESSION
 INSERT INTO session (date_started, date_ended, txt_channel_id, voice_channel_id, register_id, max_attendance) VALUES (?, ?, ?, ?, ?, ?);
+
+-----------------------------------
+-- Relations
+-----------------------------------
+
+-- CREATE MEMBERSHIP - REGISTRATION IN SESSION
+INSERT INTO membership_of_session (student_id, session_id, attendance) VALUES (?, ?, ?);
