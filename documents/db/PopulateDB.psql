@@ -29,3 +29,23 @@ VALUES ((SELECT teacher_id FROM teacher WHERE discord_id = 215896259356000266),
 INSERT INTO teachers_of_course (teacher_id, course_id)
 VALUES ((SELECT teacher_id FROM teacher WHERE discord_id = 187979032904728576),
         (SELECT course_id FROM course WHERE short_name = 'CS420'));
+
+---------------------------------------------
+-- Add Students to Course D101
+---------------------------------------------
+-- Add Tom to D101
+INSERT INTO students_of_course(student_id, course_id)
+VALUES ((SELECT student_id FROM student WHERE discord_id = 128557129912156161),
+        (SELECT course_id FROM course WHERE short_name = 'D101'));
+-- Add Cameron to D101
+INSERT INTO students_of_course(student_id, course_id)
+VALUES ((SELECT student_id FROM student WHERE discord_id = 184941413245517824),
+        (SELECT course_id FROM course WHERE short_name = 'D101'));
+-- Add Megi to D101
+INSERT INTO students_of_course(student_id, course_id)
+VALUES ((SELECT student_id FROM student WHERE discord_id = 514363906940993561),
+        (SELECT course_id FROM course WHERE short_name = 'D101'));
+-- Add Isaac to D101
+INSERT INTO students_of_course(student_id, course_id)
+VALUES ((SELECT student_id FROM student WHERE discord_id = 128557129912156161),
+        (SELECT course_id FROM course WHERE short_name = 'D101'));
