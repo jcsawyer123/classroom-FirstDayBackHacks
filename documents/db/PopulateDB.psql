@@ -3,3 +3,11 @@
 ---------------------------------------------
 INSERT INTO teacher (discord_id, first_name, last_name, title) VALUES (187979032904728576, 'Oliver', 'Graham', 'Mr');
 INSERT INTO teacher (discord_id, first_name, last_name, title) VALUES (215896259356000266, 'Joshua', 'Sawyer', 'Mr');
+
+---------------------------------------------
+-- Enroll Students
+---------------------------------------------
+INSERT INTO student (discord_id, first_name, last_name) VALUES (128557129912156161, 'Tom', 'Bailey');
+INSERT INTO student (discord_id, first_name, last_name) VALUES (184941413245517824, 'Cameron', 'Jones');
+INSERT INTO student (discord_id, first_name, last_name) VALUES (514363906940993561, 'Megi', 'Braholli');
+INSERT INTO student (discord_id, first_name, last_name) VALUES (332083833912426497, 'Isaac', 'Scarisbrick');
