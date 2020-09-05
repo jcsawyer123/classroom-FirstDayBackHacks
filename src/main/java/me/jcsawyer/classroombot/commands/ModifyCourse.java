@@ -18,5 +18,20 @@ public class ModifyCourse extends Command {
     @Override
     public void handleCommand(CommandEvent event) {
 
+        // Check to see if correct number of args
+        if(event.getArgs().length < 2){
+            event.reply("Please specify: Course Code, Option, Value");
+            return;
+        }
+        // Check if Admin
+        if(!event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+            event.reply("You must me an Admin to run this command.");
+            event.reactFailure();
+            return;
+        }
+
+        // TODO: Update record in 'course'
+        // opt_self_enrol
+        // value
     }
 }

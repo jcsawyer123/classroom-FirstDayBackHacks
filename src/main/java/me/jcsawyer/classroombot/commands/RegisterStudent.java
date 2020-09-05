@@ -19,7 +19,7 @@ public class RegisterStudent extends Command {
 
         // Check to see if correct number of args
         if(event.getArgs().length < 2){
-            event.reply("Please specify First Name and Last Name");
+            event.reply("Please specify First Name, Last Name");
             return;
         }
 

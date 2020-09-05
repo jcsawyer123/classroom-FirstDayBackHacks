@@ -17,6 +17,23 @@ public class CreateCourse extends Command{
 
     @Override
     public void handleCommand(CommandEvent event) {
+        // Check to see if correct number of args
+        if(event.getArgs().length < 2){
+            event.reply("Please specify: Course Code, Course Name");
+            return;
+        }
+        // Check if Admin
+        if(!event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
+            event.reply("You must me an Admin to run this command.");
+            event.reactFailure();
+            return;
+        }
+
+        // TODO: Add record to 'courses'
+        // Short Name
+        // Long Name
+        // Self Enroll (Default: False)
+
 
     }
 }
