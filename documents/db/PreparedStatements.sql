@@ -192,3 +192,42 @@ WHERE short_name = (?);
 SELECT short_name
 FROM course
 WHERE course_id = (?);
+
+-- SESSION
+-----------------------------------
+-- Get ID From Role ID
+SELECT session_id
+FROM session
+WHERE role_id = (?);
+-- Get Role ID From ID
+SELECT role_id
+FROM session
+WHERE session_id = (?);
+
+-- Get ID From Txt Channel ID
+SELECT session_id
+FROM session
+WHERE txt_channel_id = (?);
+-- Get Txt Channel ID From ID
+SELECT txt_channel_id
+FROM session
+WHERE session_id = (?);
+
+-- Get ID From Voice ID
+SELECT session_id
+FROM session
+WHERE voice_channel_id = (?);
+-- Get Voice ID From ID
+SELECT voice_channel_id
+FROM session
+WHERE session_id = (?);
+
+-- Get ID From Register ID
+SELECT session_id
+FROM session
+WHERE register_id = (?);
+-- Get Register ID From ID
+SELECT register_id
+FROM session
+WHERE session_id = (?);
+
