@@ -4,6 +4,7 @@ import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ScanResult;
 import me.jcsawyer.classroombot.commands.Command;
+import me.jcsawyer.classroombot.persistence.Database;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;
@@ -58,18 +59,22 @@ public class CommandDispatcher {
     public void dispatchCommand(GuildMessageReceivedEvent event) {
         if (event.getAuthor().isBot() || event.getMember() == null) return;
         String message = event.getMessage().getContentRaw();
-        if (message.startsWith(defaultCommandDelimiter)) {
-            String[] args = message.split("\\s+");
-            String command = args[0].substring(defaultCommandDelimiter.length());
-            List<Command> triggers = getCommandsForTrigger(command, true);
-            if (triggers.size() == 0) return;
-            logger.info("[guildid: " + event.getGuild().getIdLong() + "/user: " + event.getAuthor().getAsTag() + "] ran guild commands " + triggers.stream().map(c -> c.getClass().getSimpleName()).collect(Collectors.joining(" ")));
-            for (Command cmd : triggers) {
-                CommandEvent cmdE = new CommandEvent(event);
-                cmd.internalHandleCommand(cmdE);
-            }
+        Database.GUILD_DATA.fetchData(event.getGuild().getIdLong(), settings -> {
+            String delim = settings == null ? defaultCommandDelimiter : settings.getPrefix();
+            if (message.startsWith(delim)) {
+                String[] args = message.split("\\s+");
+                String command = args[0].substring(defaultCommandDelimiter.length());
+                List<Command> triggers = getCommandsForTrigger(command, true);
+                if (triggers.size() == 0) return;
+                logger.info("[guildid: " + event.getGuild().getIdLong() + "/user: " + event.getAuthor().getAsTag() + "] ran guild commands " + triggers.stream().map(c -> c.getClass().getSimpleName()).collect(Collectors.joining(" ")));
+                for (Command cmd : triggers) {
+                    CommandEvent cmdE = new CommandEvent(event);
+                    cmd.internalHandleCommand(cmdE);
+                }
 
-        }
+            }
+        }, err -> {});
+
     }
 
     private List<Command> getCommandsForTrigger(String trigger, boolean guildCommand) {

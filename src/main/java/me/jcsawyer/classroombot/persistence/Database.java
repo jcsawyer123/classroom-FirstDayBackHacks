@@ -24,6 +24,9 @@ public class Database {
 
     private HikariDataSource source;
 
+    public static TeacherStorage TEACHER_STORAGE;
+    public static GuildData GUILD_DATA;
+
     public static Database getInstance(){
         if (instance == null){
             return new Database();
@@ -53,6 +56,9 @@ public class Database {
         config.setMaximumPoolSize(10);
 
         source = new HikariDataSource(config);
+
+        TEACHER_STORAGE = new TeacherStorage(source);
+        GUILD_DATA = new GuildData(source);
 
     }
 
