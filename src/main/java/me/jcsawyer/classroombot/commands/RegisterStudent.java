@@ -7,6 +7,7 @@ public class RegisterStudent extends Command {
 
     static String[] commands = {"registerStudent", "Register"};
 
+    // Usage: !registerstudent FirstName LastName
     public RegisterStudent() {
         super("Register Student", "Register Student.", "`!register`, `!registerStudent`", commands, "student");
     }

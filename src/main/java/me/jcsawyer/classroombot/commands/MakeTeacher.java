@@ -8,6 +8,7 @@ public class MakeTeacher extends Command{
 
     static String[] commands = {"maketeacher", "createteacher", "setteacher"};
 
+    // !maketeacher @teacher title firstname lastname
     public MakeTeacher() {
         super("Make Teacher", "Creates a Teacher.", "`!maketeacher`", commands, "admin");
         this.requiredUserPermissions = new Permission[]{Permission.ADMINISTRATOR}; // User must have administrator privileges
