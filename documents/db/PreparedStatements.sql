@@ -94,3 +94,20 @@ UPDATE student s
 SET last_name = (?)
 WHERE s.student_id = (?) OR s.discord_id = (?);
 
+-- COURSE
+-----------------------------------
+
+-- Update Short Name
+UPDATE course c
+SET short_name = (?)
+WHERE c.course_id = (?);
+
+-- Update Full Name
+UPDATE course c
+SET full_name = (?)
+WHERE c.course_id = (?) OR c.short_name = (?);
+
+-- Change OPT_SELF_ENROLL
+UPDATE course c
+SET opt_self_enroll = (?)
+WHERE c.course_id = (?) OR c.short_name = (?);
