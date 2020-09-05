@@ -1,5 +1,6 @@
 package me.jcsawyer.classroombot;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
@@ -228,6 +229,36 @@ public class CommandEvent {
     @Nonnull
     public MessageChannel getChannel() {
         return isGuildMessage ? textChannel : privateChannel;
+    }
+
+    /**
+     * Gets the bot as a member of the guild from which this command was run
+     * @return the Bot, as a Member.
+     * @throws IllegalStateException iff the event is not a guild event
+     */
+    @Nonnull
+    public Member getSelfMember(){
+        if (!isGuildMessage()) throw new IllegalStateException("Not a guild event.");
+        return guildEvent.getGuild().getSelfMember();
+    }
+
+
+    /**
+     * Sends a Message to the origin channel, as an Embed.
+     * @param title The title of the embed
+     * @param description the description of the embed
+     * @param colour the colour of the embed
+     * @param fields varargs (optional) of any additional fields in the embed.
+     */
+    public void sendEmbed(String title, String description, int colour, MessageEmbed.Field... fields){
+        EmbedBuilder eb = new EmbedBuilder();
+        eb.setDescription(description);
+        eb.setTitle(title);
+        eb.setColor(colour);
+        for (MessageEmbed.Field f : fields){
+            eb.addField(f);
+        }
+        this.getChannel().sendMessage(eb.build()).queue();
     }
 
 }
