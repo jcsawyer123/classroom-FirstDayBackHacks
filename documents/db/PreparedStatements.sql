@@ -39,7 +39,12 @@ UPDATE students_of_course s
 SET active = (?)
 WHERE s.student_id = (?);
 
--- CHANGE STATE(ATTENDANCE) OF STUDENT-SESISON RELATION - SIGN-IN/SIGN-OUT
+-- CHANGE STATE(ATTENDANCE) OF STUDENT-SESSION RELATION - SIGN-IN/SIGN-OUT
 UPDATE membership_of_session r
 SET attendance = (?)
 WHERE r.student_id = (?);
+
+-- ADD DATE-ENDED
+UPDATE session s
+SET date_ended = (?)
+WHERE s.session_id = (?) && s.date_ended = null;
