@@ -180,3 +180,15 @@ WHERE discord_id = (?);
 SELECT discord_id
 FROM student
 WHERE student_id = (?);
+
+-- COURSE
+-----------------------------------
+-- Get ID From Short Name
+SELECT course_id
+FROM course
+WHERE short_name = (?);
+
+-- Get Short Name From ID
+SELECT short_name
+FROM course
+WHERE course_id = (?);
