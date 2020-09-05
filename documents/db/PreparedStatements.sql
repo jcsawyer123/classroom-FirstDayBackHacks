@@ -34,7 +34,9 @@ INSERT INTO teachers_of_course (teacher_id, course_id) VALUES (?, ?);
 -- Updates
 -----------------------------------
 
--- DEACTIVATE STUDENT-COURSE RELATION - UNENROLL
+-- CHANGE STATE OF STUDENT-COURSE RELATION - UNENROLL/REENROLL
 UPDATE students_of_course s
-SET active = false
+SET active = (?)
 WHERE s.student_id = (?);
+
+
