@@ -44,10 +44,6 @@ UPDATE membership_of_session r
 SET attendance = (?)
 WHERE r.student_id = (?);
 
--- ADD DATE-ENDED
-UPDATE session s
-SET date_ended = (?)
-WHERE s.session_id = (?) && s.date_ended = null;
 
 -----------------------------------
 -- GENERIC UPDATES
@@ -111,3 +107,46 @@ WHERE c.course_id = (?) OR c.short_name = (?);
 UPDATE course c
 SET opt_self_enroll = (?)
 WHERE c.course_id = (?) OR c.short_name = (?);
+
+-- SESSION
+-----------------------------------
+
+-- Update Start Date - Shouldn't use
+UPDATE session s
+SET date_started = (?)
+WHERE s.session_id = (?);
+
+-- Add End Date
+UPDATE session s
+SET date_ended = (?)
+WHERE s.session_id = (?) && s.date_ended = null;
+
+-- Update End Date - Shouldn't use
+UPDATE session s
+SET date_ended = (?)
+WHERE s.session_id = (?);
+
+-- Update Text Channel ID
+UPDATE session s
+SET txt_channel_id = (?)
+WHERE s.session_id = (?);
+
+-- Update Voice Channel ID
+UPDATE session s
+SET voice_channel_id = (?)
+WHERE s.session_id = (?);
+
+-- Update Role ID
+UPDATE session s
+SET role_id = (?)
+WHERE s.session_id = (?);
+
+-- Update Register ID
+UPDATE session s
+SET register_id = (?)
+WHERE s.session_id = (?);
+
+-- Update Max Attendance
+UPDATE session s
+SET max_attendance = (?)
+WHERE s.session_id = (?);
