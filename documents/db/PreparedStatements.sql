@@ -31,7 +31,7 @@ INSERT INTO students_of_course (student_id, course_id) VALUES  (?, ?, ?);
 INSERT INTO teachers_of_course (teacher_id, course_id) VALUES (?, ?);
 
 -----------------------------------
--- Updates
+-- SPECIFIC UPDATES
 -----------------------------------
 
 -- CHANGE STATE OF STUDENT-COURSE RELATION - UNENROLL/REENROLL
@@ -48,3 +48,7 @@ WHERE r.student_id = (?);
 UPDATE session s
 SET date_ended = (?)
 WHERE s.session_id = (?) && s.date_ended = null;
+
+-----------------------------------
+-- GENERIC UPDATES
+-----------------------------------
