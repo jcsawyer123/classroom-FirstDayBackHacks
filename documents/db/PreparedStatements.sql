@@ -26,3 +26,6 @@ INSERT INTO session_of_course (course_id, session_id) VALUES (?, ?);
 
 -- STUDENT-COURSE RELATION - ENROLL STUDENT
 INSERT INTO students_of_course (student_id, course_id) VALUES  (?, ?, ?);
+
+-- TEACHER-COURSE RELATION - ADD TEACHER
+INSERT INTO teachers_of_course (teacher_id, course_id) VALUES (?, ?);
