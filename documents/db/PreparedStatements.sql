@@ -52,3 +52,23 @@ WHERE s.session_id = (?) && s.date_ended = null;
 -----------------------------------
 -- GENERIC UPDATES
 -----------------------------------
+
+-- TEACHER
+UPDATE teacher t
+SET discord_id = (?)
+WHERE t.teacher_id = (?);
+
+-- Update FirstName
+UPDATE teacher t
+SET first_name = (?)
+WHERE t.teacher_id = (?) OR discord_id = (?);
+
+-- Update LastName
+UPDATE teacher t
+SET last_name = (?)
+WHERE t.teacher_id = (?) OR discord_id = (?);
+
+-- Update Title
+UPDATE teacher t
+SET title = (?)
+WHERE t.teacher_id = (?) OR discord_id = (?);
