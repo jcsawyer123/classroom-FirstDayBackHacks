@@ -150,3 +150,21 @@ WHERE s.session_id = (?);
 UPDATE session s
 SET max_attendance = (?)
 WHERE s.session_id = (?);
+
+
+
+-----------------------------------
+-- SELECTORS (Getters)
+-----------------------------------
+
+-- TEACHER
+-----------------------------------
+-- Get ID From Discord ID
+SELECT teacher_id
+FROM teacher
+WHERE discord_id = (?);
+
+-- Get Discord ID From ID
+SELECT discord_id
+FROM teacher
+WHERE teacher_id = (?);
