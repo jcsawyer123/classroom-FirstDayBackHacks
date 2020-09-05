@@ -5,14 +5,21 @@ import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ScanResult;
 import me.jcsawyer.classroombot.commands.Command;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CommandDispatcher {
+
+    private final static String defaultCommandDelimiter = "!";
 
     Logger logger = LogManager.getLogger(CommandDispatcher.class);
 
@@ -46,6 +53,54 @@ public class CommandDispatcher {
         for (Command c : commands) {
             c.onLoad(jda, this);
         }
+    }
+
+    public void dispatchCommand(GuildMessageReceivedEvent event) {
+        if (event.getAuthor().isBot() || event.getMember() == null) return;
+        String message = event.getMessage().getContentRaw();
+        if (message.startsWith(defaultCommandDelimiter)) {
+            String[] args = message.split("\\s+");
+            String command = args[0].substring(defaultCommandDelimiter.length());
+            List<Command> triggers = getCommandsForTrigger(command, true);
+            if (triggers.size() == 0) return;
+            logger.info("[guildid: " + event.getGuild().getIdLong() + "/user: " + event.getAuthor().getAsTag() + "] ran guild commands " + triggers.stream().map(c -> c.getClass().getSimpleName()).collect(Collectors.joining(" ")));
+            for (Command cmd : triggers) {
+                CommandEvent cmdE = new CommandEvent(event);
+                cmd.handleCommand(cmdE);
+            }
+
+        }
+    }
+
+    private List<Command> getCommandsForTrigger(String trigger, boolean guildCommand) {
+        return commands.stream().filter(c -> guildCommand || !c.requireGuild()).filter(c -> Stream.of(c.getCommands()).anyMatch(trigger::equalsIgnoreCase)).collect(Collectors.toList());
+    }
+
+    public void dispatchCommand(PrivateMessageReceivedEvent event) {
+        String message = event.getMessage().getContentRaw();
+        if (!message.startsWith(defaultCommandDelimiter)) return;
+        String[] args = message.split("\\s+");
+        String command = args[0].substring(defaultCommandDelimiter.length());
+
+        List<Command> triggers = getCommandsForTrigger(command, false);
+        if (triggers.size() == 0) return;
+        logger.info("Ran private commands " + triggers.stream().map(c -> c.getClass().getSimpleName()).collect(Collectors.joining(" ")));
+        for (Command cmd : triggers) {
+            CommandEvent cmdE = new CommandEvent(event);
+            cmd.handleCommand(cmdE);
+        }
+    }
+
+    public boolean isCommand(String cmd) {
+        return commands.stream().anyMatch(c -> Arrays.stream(c.getCommands()).anyMatch(cmd::equalsIgnoreCase));
+    }
+
+    public List<Command> getCommands() {
+        return commands;
+    }
+
+    public Command getCommand(String cmd) {
+        return commands.stream().filter(c -> Arrays.stream(c.getCommands()).anyMatch(cmd::equalsIgnoreCase)).findFirst().orElse(null);
     }
 
 
