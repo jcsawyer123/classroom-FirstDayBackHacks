@@ -18,6 +18,11 @@ public class Bot {
 
     public static void main(String[] args) throws IOException, LoginException, InterruptedException {
         //read the token in
+        initBot();
+//        new CommandDispatcher();
+    }
+
+    private static JDA initBot() throws IOException, LoginException, InterruptedException {
         List<String> lines = Files.readAllLines(Paths.get("token.txt"));
         JDA jda = JDABuilder.createDefault(lines.get(0), EnumSet.allOf(GatewayIntent.class))
                 .enableCache(EnumSet.allOf(CacheFlag.class))
@@ -26,6 +31,7 @@ public class Bot {
                 .addEventListeners(new EventManager())
                 .build();
         jda.awaitReady();
+        return jda;
     }
 
 }
