@@ -12,7 +12,8 @@ public class Student {
   @Nullable
   private List<Course> courses = null;
   
-  public Student(int studentID, long discordID, String firstName, String lastName) {
+  public Student(int studentID, long discordID, String firstName, String lastName)
+    throws IllegalArgumentException {
     if(firstName.length() > 256) {
       throw new IllegalArgumentException("Firstname is longer than 256 characters.");
     } else if(lastName.length() > 256) {
@@ -54,12 +55,12 @@ public class Student {
     return firstName;
   }
   
-  public void setFirstName(String firstName) {
+  public void setFirstName(String firstName) throws IllegalArgumentException {
     if(firstName.length() > 256) {
       throw new IllegalArgumentException("Firstname is longer than 256 characters.");
-    } else {
-      this.firstName = firstName;
     }
+      this.firstName = firstName;
+    
   }
   
   public String getLastName() {
@@ -67,16 +68,26 @@ public class Student {
     return lastName;
   }
   
-  public void setLastName(String lastName) {
+  public void setLastName(String lastName) throws IllegalArgumentException {
     if(firstName.length() > 256) {
       throw new IllegalArgumentException("Lastname is longer than 256 characters.");
-    } else {
-      this.lastName = lastName;
     }
+      this.lastName = lastName;
+    
   }
   
   public String getFullName() {
     return this.firstName + " " + this.lastName;
+  }
+  
+  public void addCourse(Course course) {
+    this.courses.add(course);
+  }
+  
+  public void removeCourse(Course course) {
+    if(courses != null) {
+      this.courses.remove(course);
+    }
   }
 
 }
