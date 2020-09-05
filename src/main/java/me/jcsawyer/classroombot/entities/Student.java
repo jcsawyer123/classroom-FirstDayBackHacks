@@ -4,28 +4,28 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class Student {
-  private int studentID;
-  private long discordID;
+  private int studentId;
+  private long discordId;
   private String firstName;
   private String lastName;
   
   private List<Course> courses = null;
   
-  public Student(int studentID, long discordID, String firstName, String lastName, List<Course> courses)
+  public Student(int studentId, long discordId, String firstName, String lastName, List<Course> courses)
     throws IllegalArgumentException {
-    new Student(studentID, discordID, firstName, lastName);
+    new Student(studentId, discordId, firstName, lastName);
     this.courses = courses;
   }
   
-  public Student(int studentID, long discordID, String firstName, String lastName)
+  public Student(int studentId, long discordId, String firstName, String lastName)
     throws IllegalArgumentException {
     if(firstName.length() > 256) {
       throw new IllegalArgumentException("Firstname is longer than 256 characters.");
     } else if(lastName.length() > 256) {
       throw new IllegalArgumentException("Lastname is longer than 256 characters.");
     }
-    this.studentID = studentID;
-    this.discordID = discordID;
+    this.studentId = studentId;
+    this.discordId = discordId;
     this.firstName = firstName;
     this.lastName = lastName;
   }
@@ -39,21 +39,21 @@ public class Student {
     this.courses = courses;
   }
   
-  public int getStudentID() {
-    return studentID;
+  public int getStudentId() {
+    return studentId;
   }
   
-  public void setStudentID(int studentID) {
-    this.studentID = studentID;
+  public void setStudentId(int studentId) {
+    this.studentId = studentId;
   }
   
-  public long getDiscordID() {
-    return discordID;
+  public long getDiscordId() {
+    return discordId;
   }
   
-  public void setDiscordID(long discordID) {
+  public void setDiscordId(long discordId) {
     
-    this.discordID = discordID;
+    this.discordId = discordId;
   }
   
   public String getFirstName() {

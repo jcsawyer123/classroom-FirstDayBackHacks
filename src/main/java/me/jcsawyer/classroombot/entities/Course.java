@@ -1,12 +1,12 @@
 package me.jcsawyer.classroombot.entities;
 
 public class Course {
-  private int courseID;
+  private int courseId;
   private String shortName;
   private String fullName;
   private boolean optSelfEnrol;
   
-  public Course(int courseID, String shortName, String fullName, boolean optSelfEnrol)
+  public Course(int courseId, String shortName, String fullName, boolean optSelfEnrol)
     throws IllegalArgumentException {
     
     if(shortName.length() > 128) {
@@ -14,18 +14,18 @@ public class Course {
     } else if(fullName.length() > 256) {
       throw new IllegalArgumentException("Fullname is longer than 256 characters.");
     }
-    this.courseID = courseID;
+    this.courseId = courseId;
     this.shortName = shortName;
     this.fullName = fullName;
     this.optSelfEnrol = optSelfEnrol;
   }
   
-  public int getCourseID() {
-    return courseID;
+  public int getCourseId() {
+    return courseId;
   }
   
-  public void setCourseID(int courseID) {
-    this.courseID = courseID;
+  public void setCourseId(int courseId) {
+    this.courseId = courseId;
   }
   
   public String getShortName() {
