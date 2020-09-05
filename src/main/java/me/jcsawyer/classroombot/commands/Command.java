@@ -4,6 +4,8 @@ import me.jcsawyer.classroombot.CommandDispatcher;
 import me.jcsawyer.classroombot.CommandEvent;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.Permission;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 
