@@ -1,10 +1,16 @@
 package me.jcsawyer.classroombot.entities;
 
+import javax.annotation.Nullable;
+import java.util.List;
+
 public class Student {
   private int studentID;
   private long discordID;
   private String firstName;
   private String lastName;
+  
+  @Nullable
+  private List<Course> courses = null;
   
   public Student(int studentID, long discordID, String firstName, String lastName) {
     if(firstName.length() > 256) {
@@ -16,6 +22,15 @@ public class Student {
     this.discordID = discordID;
     this.firstName = firstName;
     this.lastName = lastName;
+  }
+  
+  @Nullable
+  public List<Course> getCourses() {
+    return courses;
+  }
+  
+  public void setCourses(@Nullable List<Course> courses) {
+    this.courses = courses;
   }
   
   public int getStudentID() {
