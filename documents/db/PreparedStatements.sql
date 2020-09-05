@@ -54,6 +54,9 @@ WHERE s.session_id = (?) && s.date_ended = null;
 -----------------------------------
 
 -- TEACHER
+-----------------------------------
+
+-- Update Discord ID
 UPDATE teacher t
 SET discord_id = (?)
 WHERE t.teacher_id = (?);
@@ -72,3 +75,22 @@ WHERE t.teacher_id = (?) OR discord_id = (?);
 UPDATE teacher t
 SET title = (?)
 WHERE t.teacher_id = (?) OR discord_id = (?);
+
+-- STUDENT
+-----------------------------------
+
+-- Update Discord ID
+UPDATE student s
+SET discord_id = (?)
+WHERE s.student_id = (?);
+
+-- Update FirstName
+UPDATE student s
+SET first_name = (?)
+WHERE s.student_id = (?) OR s.discord_id = (?);
+
+-- Update LastName
+UPDATE student s
+SET last_name = (?)
+WHERE s.student_id = (?) OR s.discord_id = (?);
+
