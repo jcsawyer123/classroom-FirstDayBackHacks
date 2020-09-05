@@ -16,6 +16,8 @@ import java.util.List;
 
 public class Bot {
 
+    static String[] emojis = {"✅", "❓", "❌"};
+
     public static void main(String[] args) throws IOException, LoginException, InterruptedException {
         //read the token in
         initBot();
