@@ -29,3 +29,12 @@ INSERT INTO students_of_course (student_id, course_id) VALUES  (?, ?, ?);
 
 -- TEACHER-COURSE RELATION - ADD TEACHER
 INSERT INTO teachers_of_course (teacher_id, course_id) VALUES (?, ?);
+
+-----------------------------------
+-- Updates
+-----------------------------------
+
+-- DEACTIVATE STUDENT-COURSE RELATION - UNENROLL
+UPDATE students_of_course s
+SET active = false
+WHERE s.student_id = (?);
