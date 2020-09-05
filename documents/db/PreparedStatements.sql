@@ -23,3 +23,6 @@ INSERT INTO membership_of_session (student_id, session_id, attendance) VALUES (?
 
 -- SESSION RELATION TO COURSE
 INSERT INTO session_of_course (course_id, session_id) VALUES (?, ?);
+
+-- STUDENT-COURSE RELATION - ENROLL STUDENT
+INSERT INTO students_of_course (student_id, course_id) VALUES  (?, ?, ?);
