@@ -168,3 +168,15 @@ WHERE discord_id = (?);
 SELECT discord_id
 FROM teacher
 WHERE teacher_id = (?);
+
+-- STUDENT
+-----------------------------------
+-- Get ID From Discord ID
+SELECT student_id
+FROM student
+WHERE discord_id = (?);
+
+-- Get Discord ID From ID
+SELECT discord_id
+FROM student
+WHERE student_id = (?);
