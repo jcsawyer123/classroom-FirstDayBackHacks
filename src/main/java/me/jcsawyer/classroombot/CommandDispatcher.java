@@ -66,7 +66,7 @@ public class CommandDispatcher {
             logger.info("[guildid: " + event.getGuild().getIdLong() + "/user: " + event.getAuthor().getAsTag() + "] ran guild commands " + triggers.stream().map(c -> c.getClass().getSimpleName()).collect(Collectors.joining(" ")));
             for (Command cmd : triggers) {
                 CommandEvent cmdE = new CommandEvent(event);
-                cmd.handleCommand(cmdE);
+                cmd.internalHandleCommand(cmdE);
             }
 
         }
@@ -87,7 +87,7 @@ public class CommandDispatcher {
         logger.info("Ran private commands " + triggers.stream().map(c -> c.getClass().getSimpleName()).collect(Collectors.joining(" ")));
         for (Command cmd : triggers) {
             CommandEvent cmdE = new CommandEvent(event);
-            cmd.handleCommand(cmdE);
+            cmd.internalHandleCommand(cmdE);
         }
     }
 
