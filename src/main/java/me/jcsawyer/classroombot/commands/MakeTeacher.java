@@ -32,7 +32,7 @@ public class MakeTeacher extends Command{
       String firstName = args[1];
       String secondName = args[2];
       
-      Role teacherRole = null;
+      Role teacherRole = null; //to get from DB
       Teacher teacher = new Teacher(event.getAuthor().getIdLong(), firstName, secondName, title);
       
       event.getGuild().addRoleToMember(member, teacherRole).reason("Registered as Teacher by: " + member.getEffectiveName());
