@@ -9,8 +9,13 @@ public class Student {
   private String firstName;
   private String lastName;
   
-  @Nullable
   private List<Course> courses = null;
+  
+  public Student(int studentID, long discordID, String firstName, String lastName, List<Course> courses)
+    throws IllegalArgumentException {
+    new Student(studentID, discordID, firstName, lastName);
+    this.courses = courses;
+  }
   
   public Student(int studentID, long discordID, String firstName, String lastName)
     throws IllegalArgumentException {
@@ -81,12 +86,18 @@ public class Student {
   }
   
   public void addCourse(Course course) {
-    this.courses.add(course);
+    if(this.courses != null) {
+      this.courses.add(course);
+    } else {
+      throw new IllegalStateException("Courses is null.");
+    }
   }
   
   public void removeCourse(Course course) {
     if(courses != null) {
       this.courses.remove(course);
+    } else {
+      throw new IllegalStateException("Courses is null.");
     }
   }
 
