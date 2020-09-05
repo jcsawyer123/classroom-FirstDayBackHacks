@@ -20,3 +20,6 @@ INSERT INTO session (date_started, date_ended, txt_channel_id, voice_channel_id,
 
 -- CREATE MEMBERSHIP - REGISTRATION IN SESSION
 INSERT INTO membership_of_session (student_id, session_id, attendance) VALUES (?, ?, ?);
+
+-- SESSION RELATION TO COURSE
+INSERT INTO session_of_course (course_id, session_id) VALUES (?, ?);
