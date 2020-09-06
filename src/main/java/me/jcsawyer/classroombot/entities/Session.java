@@ -50,12 +50,12 @@ public class Session {
     }
 
     public Date getDateStarted() {
-        return dateStarted;
+      return new Date(this.dateStarted.toInstant().toEpochMilli());
     }
 
     @Nullable
     public Date getDateEnded() {
-        return dateEnded;
+      return new Date(this.dateEnded.toInstant().toEpochMilli());
     }
 
     public long getTextChannelId() {
