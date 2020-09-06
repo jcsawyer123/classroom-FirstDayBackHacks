@@ -14,19 +14,28 @@ import java.util.function.Consumer;
 
 public class GuildData {
 
-    Logger logger = LogManager.getLogger(GuildData.class);
+    // Setup
+    // ----------------
+    private static Logger logger = LogManager.getLogger(GuildData.class);
+    private final HikariDataSource source;
 
-    HikariDataSource source;
-
+    // Prepared Statements
+    // ----------------
     static String SET_GUILD_DATA =
             "insert into guild_table(guild_id, teacher_role_id, student_role_id, category_id, prefix) VALUES (?, ?, ?, ?, ?);";
     static String GET_GUILD_DATA =
             "select teacher_role_id, student_role_id, category_id, prefix from guild_table where guild_id = ?;";
 
+
+    // Constructor
+    // ----------------
     public GuildData(HikariDataSource source){
         this.source = source;
     }
 
+
+    // Methods
+    // ----------------
     public void fetchData(long guildID, Consumer<GuildSettings> success, Consumer<SQLException> failure){
         fetchData(Database.dbPool, guildID, success, failure);
     }
