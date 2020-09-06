@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CourseStorage {
@@ -46,4 +47,20 @@ public class CourseStorage {
             logger.warn("Failed to add course", ex);
         }
     }
+//
+//    public Course getCourseByID(Long id){
+//        try (Connection connection = source.getConnection();
+//             PreparedStatement getCourseById = connection.prepareStatement(GET_COURSE_BY_ID)
+//        ) {
+//
+//            getCourseById.setLong(1, id);
+//            ResultSet set = getCourseById.executeQuery();
+//
+//            // TODO: Return Result
+//
+////            return result;
+//        } catch (SQLException ex){
+//            logger.warn("Failed to get Course by ID", ex);
+//        }
+//    }
 }
