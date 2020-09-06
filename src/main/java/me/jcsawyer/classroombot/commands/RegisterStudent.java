@@ -1,9 +1,12 @@
 package me.jcsawyer.classroombot.commands;
 
 import me.jcsawyer.classroombot.CommandEvent;
+import me.jcsawyer.classroombot.persistence.Database;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Role;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 public class RegisterStudent extends Command {
 
@@ -25,7 +28,15 @@ public class RegisterStudent extends Command {
 
         // Vars
         Member member = event.getMember();
-        Role studentRole = null; // Get ID From DB
+        ;
+
+        AtomicReference<Role> studentRole = new AtomicReference<>(event.getGuild().getPublicRole());
+
+        Database.GUILD_DATA.fetchData(event.getGuild().getIdLong(), (data) -> {
+            studentRole.set(event.getGuild().getRoleById(data.getStudentRoleId()));
+        }, (SQLException) -> {
+            System.err.println("error getting data from guild");
+        });
 
         String[] args = event.getArgs();
         String firstName = args[0];
@@ -35,11 +46,12 @@ public class RegisterStudent extends Command {
         // - Add To DB
             // Check they are not already registered
             // Discord ID, First Name, Last Name
-
+        Database.STUDENT_STORAGE.addStudent(event.getUser().getIdLong(),firstName, lastName);
 
         // - Add "Student" role to user
+        assert member != null;
         event.getGuild()
-                .addRoleToMember(member, studentRole)
+                .addRoleToMember(member, studentRole.get())
                 .reason("Registered As Student by: "
                         + event.getMember().getUser().getAsTag());
         event.reactSuccess();
