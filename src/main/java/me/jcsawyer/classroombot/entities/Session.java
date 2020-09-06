@@ -1,6 +1,7 @@
 package me.jcsawyer.classroombot.entities;
 
 import javax.annotation.Nullable;
+import java.sql.Date;
 import java.time.OffsetDateTime;
 import java.util.List;
 
@@ -48,12 +49,12 @@ public class Session {
         this.dateEnded = dateEnded;
     }
 
-    public OffsetDateTime getDateStarted() {
+    public Date getDateStarted() {
         return dateStarted;
     }
 
     @Nullable
-    public OffsetDateTime getDateEnded() {
+    public Date getDateEnded() {
         return dateEnded;
     }
 
