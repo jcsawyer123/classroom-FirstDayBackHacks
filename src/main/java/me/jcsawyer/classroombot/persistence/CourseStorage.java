@@ -1,8 +1,14 @@
 package me.jcsawyer.classroombot.persistence;
 
 import com.zaxxer.hikari.HikariDataSource;
+import me.jcsawyer.classroombot.entities.Course;
+import me.jcsawyer.classroombot.entities.Student;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public class CourseStorage {
     // Setup
@@ -24,5 +30,20 @@ public class CourseStorage {
 
     // Methods
     // ----------------
+    public void addCourse(Course course){
+        try (Connection connection = source.getConnection();
+             PreparedStatement addCourse = connection.prepareStatement(NEW_COURSE, PreparedStatement.RETURN_GENERATED_KEYS)
+        ) {
 
+            // Set Values in Statement
+            addCourse.setString(1, course.getShortName());
+            addCourse.setString(2, course.getFullName());
+
+            // Execute Statement
+            addCourse.executeUpdate();
+
+        } catch (SQLException ex){
+            logger.warn("Failed to add course", ex);
+        }
+    }
 }
