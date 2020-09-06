@@ -1,6 +1,7 @@
 package me.jcsawyer.classroombot.commands;
 
 import me.jcsawyer.classroombot.CommandEvent;
+import me.jcsawyer.classroombot.persistence.Database;
 import net.dv8tion.jda.api.Permission;
 
 public class CreateCourse extends Command{
@@ -34,6 +35,8 @@ public class CreateCourse extends Command{
         // Long Name
         // Self Enroll (Default: False)
 
+        Database.COURSE_STORAGE.addCourse(event.getArgs()[0],event.getArgs()[1]);
+        event.reactSuccess();
 
     }
 }

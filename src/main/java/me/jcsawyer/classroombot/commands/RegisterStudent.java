@@ -46,6 +46,8 @@ public class RegisterStudent extends Command {
         // - Add To DB
             // Check they are not already registered
             // Discord ID, First Name, Last Name
+
+        // Still needs a check of exists
         Database.STUDENT_STORAGE.addStudent(event.getUser().getIdLong(),firstName, lastName);
 
         // - Add "Student" role to user
