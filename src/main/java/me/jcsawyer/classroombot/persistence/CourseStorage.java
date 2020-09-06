@@ -31,14 +31,14 @@ public class CourseStorage {
 
     // Methods
     // ----------------
-    public void addCourse(Course course){
+    public void addCourse(String short_name, String full_name){
         try (Connection connection = source.getConnection();
              PreparedStatement addCourse = connection.prepareStatement(NEW_COURSE, PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
 
             // Set Values in Statement
-            addCourse.setString(1, course.getShortName());
-            addCourse.setString(2, course.getFullName());
+            addCourse.setString(1, short_name);
+            addCourse.setString(2, full_name);
 
             // Execute Statement
             addCourse.executeUpdate();
