@@ -32,16 +32,16 @@ public class TeacherStorage {
     // Methods
     // ----------------
 
-    public void addTeacher(Teacher teacher){
+    public void addTeacher(long discordID, String firstName, String lastName, String title ){
         try (Connection connection = source.getConnection();
              PreparedStatement addTeacher = connection.prepareStatement(NEW_TEACHER, PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
 
             // Set Values in Statement
-            addTeacher.setLong(1, teacher.getDiscordId());
-            addTeacher.setString(2, teacher.getFirstname());
-            addTeacher.setString(3, teacher.getLastname());
-            addTeacher.setString(4, teacher.getTitle());
+            addTeacher.setLong(1, discordID);
+            addTeacher.setString(2, firstName);
+            addTeacher.setString(3, lastName);
+            addTeacher.setString(4, title);
 
             // Execute Statement
             addTeacher.executeUpdate();

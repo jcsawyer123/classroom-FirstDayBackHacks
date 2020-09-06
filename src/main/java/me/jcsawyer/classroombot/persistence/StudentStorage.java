@@ -31,15 +31,15 @@ public class StudentStorage {
 
     // Methods
     // ----------------
-    public void addStudent(Student student){
+    public void addStudent(long uid, String firstName, String lastName){
         try (Connection connection = source.getConnection();
              PreparedStatement addStudent = connection.prepareStatement(NEW_STUDENT, PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
 
             // Set Values in Statement
-            addStudent.setLong(1, student.getDiscordId());
-            addStudent.setString(2, student.getFirstName());
-            addStudent.setString(3, student.getLastName());
+            addStudent.setLong(1, uid);
+            addStudent.setString(2, firstName);
+            addStudent.setString(3, lastName);
 
             // Execute Statement
             addStudent.executeUpdate();
