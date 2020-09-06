@@ -3,6 +3,7 @@ package me.jcsawyer.classroombot.persistence;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import me.jcsawyer.classroombot.entities.Student;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,6 +27,9 @@ public class Database {
 
     public static TeacherStorage TEACHER_STORAGE;
     public static GuildData GUILD_DATA;
+    public static SessionStorage SESSION_STORAGE;
+    public static StudentStorage STUDENT_STORAGE;
+    public static CourseStorage COURSE_STORAGE;
 
     public static Database getInstance(){
         if (instance == null){
@@ -58,6 +62,9 @@ public class Database {
         source = new HikariDataSource(config);
 
         TEACHER_STORAGE = new TeacherStorage(source);
+        STUDENT_STORAGE = new StudentStorage(source);
+        SESSION_STORAGE = new SessionStorage(source);
+        COURSE_STORAGE = new CourseStorage(source);
         GUILD_DATA = new GuildData(source);
 
     }
